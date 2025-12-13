@@ -10,8 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['protocol'] = 'smtp';
 $config['smtp_host'] = 'smtp.gmail.com';  // change with SMTP host Anda
 $config['smtp_port'] = 587;
-$config['smtp_user'] = 'adamworks23@gmail.com';  // change with your configuration email
-$config['smtp_pass'] = 'pakxuuqijegdrydp';  // change with email smtp pass key
+$config['smtp_user'] = '';  // change with your configuration email
+$config['smtp_pass'] = '';  // change with email smtp pass key
 $config['smtp_crypto'] = 'tls';  // 'tls' or 'ssl'
 $config['smtp_timeout'] = 30;
 
