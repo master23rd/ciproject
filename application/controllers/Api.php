@@ -73,7 +73,7 @@ class Api extends CI_Controller {
                 'available_status' => (bool) $product->available_status,
                 'category_id' => (int) $product->category_id,
                 'category_name' => $product->category_name ?? null,
-                'image' => $this->get_product_image($product->id),
+                'image' => $product->image,
                 'created_at' => $product->created_at ?? null,
                 'updated_at' => $product->updated_at ?? null
             ];

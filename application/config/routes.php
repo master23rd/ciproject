@@ -126,5 +126,11 @@ $route['api/categories/(:num)/products'] = 'api/category_products/$1';
 // User API routes (protected)
 $route['api/user/profile'] = 'api/user_profile';
 
+// Migration and seeder routes
+$route['migrate'] = 'migrate/index';
+$route['migrate/(:any)'] = 'migrate/$1';
+$route['seed'] = 'seeder/index';
+$route['seed/(:any)'] = 'seeder/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

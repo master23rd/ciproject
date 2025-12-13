@@ -28,6 +28,7 @@ class Product_model extends CI_Model {
         $this->db->select('tbl_products.*, tbl_categories.name as category_name');
         $this->db->from($this->table);
         $this->db->join('tbl_categories', 'tbl_categories.id = tbl_products.category_id', 'left');
+        $this->db->order_by('tbl_products.created_at', 'DESC');
         return $this->db->get()->result();
     }
 
@@ -56,7 +57,9 @@ class Product_model extends CI_Model {
      */
     public function get_by_category($category_id)
     {
-        return $this->db->get_where($this->table, ['category_id' => $category_id])->result();
+        $this->db->where('category_id', $category_id);
+        $this->db->order_by('created_at', 'DESC');
+        return $this->db->get($this->table)->result();
     }
 
     /**
