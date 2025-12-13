@@ -37,12 +37,12 @@ This project follows a MVC architecture with the following main components:
 The project includes a comprehensive File database seeder for migrating Master/Dummy data:
 
 # Quick start 
-Run Migration	http://localhost/[project_title]/migrate
-Rollback Migration	http://localhost/[project_title]/migrate/rollback
-Migrate to version X	http://localhost/[project_title]/migrate/version/5
-Fresh (reset + migrate + seed)	http://localhost/[project_title]/migrate/fresh
-Run Seeder	http://localhost/[project_title]/seeder
-Run Seeder specific file	http://localhost/[project_title]/seeder/run/ProductSeeder
+- Run Migration	http://localhost/[project_title]/migrate
+- Rollback Migration	http://localhost/[project_title]/migrate/rollback
+- Migrate to version X	http://localhost/[project_title]/migrate/version/5
+- Fresh (reset + migrate + seed)	http://localhost/[project_title]/migrate/fresh
+- Run Seeder	http://localhost/[project_title]/seeder
+- Run Seeder specific file	http://localhost/[project_title]/seeder/run/ProductSeeder
 
 ## 📋 1 Installation & Setup
 Before setting up the project, ensure you have the following installed:
@@ -72,33 +72,41 @@ Run Seeder	http://localhost/[project_title]/seeder
 Make sure to update stripe & email key (consider to replace or I would like to provide testing key by private chat)
 
 ### 6. Open Landing page & Login 
-access to http://localhost/[project_title] or using local domain (need to setup on nginx - eg. shophub.test)
-direct to http://localhost/[project_title]/login, use dummy data that show on top form
-try to add cart, checkout and recieved notifications
+- access to http://localhost/[project_title] or using local domain (need to setup on nginx - eg. shophub.test)
+- direct to http://localhost/[project_title]/login, use dummy data that show on top form
+- try to add cart, checkout and recieved notifications
 
 ### 7. Open Admin & Login
-access to http://localhost/[project_title]/admin or using local domain (need to setup on nginx - eg. shophub.test)
-login using dummy data
-open dashboard to check orders, products, categories, customer and others menu
+- access to http://localhost/[project_title]/admin or using local domain (need to setup on nginx - eg. shophub.test)
+- login using dummy data
+- open dashboard to check orders, products, categories, customer and others menu
 
 ## 🗄️ 2 Database Management
 
 ### Database Migrations
 
 ERD Diagram and relations can see on this link :
+
 https://dbdiagram.io/d/693d6473e877c63074b35015
 
 ![alt text](erd.png)
 
+- Category (1) — (N) Product
+- Product (1) — (N) Image
+- Customer (1) — (N) Transaction
+- Transaction (1) — (N) Detail Transaction (M-M) with Product
+- Product (1) — (N) Detail Transaction (M-M) with Transactions
+
 ## 🔒 3 Authentication & Authorization
 
 To ensure users can perform only authorized tasks
+
 The system will implements role-based access control (RBAC) with:
 
 Assign roles/permissions:
-✔️ Admin — full access
-✔️ Editor — limited editing
-✔️ User/Customer — view only
+- Admin — full access
+- Editor — limited editing
+- User/Customer — view only
 
 - **JWT Authentication**: Secure token-based authentication
 - **Role Management**: Hierarchical role system
