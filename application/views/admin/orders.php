@@ -62,13 +62,11 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('admin/orders/view/' . $order->order_number) ?>" class="btn btn-sm btn-info" title="View">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
+                                                <!--  -->
                                                 <a href="<?= base_url('invoice/view/' . $order->order_number) ?>" class="btn btn-sm btn-secondary" title="Invoice" target="_blank">
                                                     <i class="bi bi-file-pdf"></i>
                                                 </a>
-                                                <div class="btn-group">
+                                                <!-- <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown">
                                                         <i class="bi bi-gear"></i>
                                                     </button>
@@ -79,7 +77,7 @@
                                                         <li><hr class="dropdown-divider"></li>
                                                         <li><a class="dropdown-item text-danger" href="<?= base_url('admin/orders/status/' . $order->order_number . '/cancelled') ?>">Cancel Order</a></li>
                                                     </ul>
-                                                </div>
+                                                </div> -->
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>

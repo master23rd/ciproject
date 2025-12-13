@@ -297,7 +297,7 @@
                     <a class="nav-link" href="<?php echo base_url('promo'); ?>"><i class="fas fa-percent me-1"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('flash-sale'); ?>"><i class="fas fa-bolt me-1"></i> Flash Sale (Comming Soon)</a>
+                    <a class="nav-link" href="<?php echo base_url('flash-sale'); ?>"><i class="fas fa-bolt me-1"></i> Flash Sale (Coming Soon)</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('new-arrivals'); ?>"><i class="fas fa-star me-1"></i> New Arrivals</a>

@@ -27,7 +27,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="bi bi-gear me-2"></i>
-                                        General Settings
+                                        General Settings (coming soon)
                                     </h3>
                                 </div>
                                 <form action="<?= base_url('admin/settings/save') ?>" method="POST" enctype="multipart/form-data">
@@ -93,7 +93,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="bi bi-credit-card me-2"></i>
-                                        Payment Settings
+                                        Payment Settings (coming soon)
                                     </h3>
                                 </div>
                                 <form action="<?= base_url('admin/settings/save_payment') ?>" method="POST">
@@ -199,7 +199,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="bi bi-person me-2"></i>
-                                        Admin Profile
+                                        Admin Profile (coming soon)
                                     </h3>
                                 </div>
                                 <form action="<?= base_url('admin/settings/save_profile') ?>" method="POST">

@@ -37,7 +37,7 @@
                                         <th>Phone</th>
                                         <th>Address</th>
                                         <th>Registered</th>
-                                        <th width="10%">Actions</th>
+                                        <!-- <th width="10%">Actions</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,7 +56,7 @@
                                             <td><?= $customer->phone ?? '-' ?></td>
                                             <td><?= $customer->address ?? '-' ?></td>
                                             <td><?= isset($customer->created_at) ? date('M d, Y', strtotime($customer->created_at)) : '-' ?></td>
-                                            <td>
+                                            <!-- <td>
                                                 <a href="<?= base_url('admin/customers/view/' . $customer->id) ?>" class="btn btn-sm btn-info" title="View">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
@@ -64,7 +64,7 @@
                                                         onclick="confirmDelete('<?= base_url('admin/customers/delete/' . $customer->id) ?>', '<?= addslashes($customer->customer_name) ?>')">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>

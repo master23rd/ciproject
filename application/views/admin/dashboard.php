@@ -22,6 +22,22 @@
                 <div class="container-fluid">
                     <!-- Statistics Cards -->
                     <div class="row">
+						<!-- Total Revenue -->
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box text-bg-success">
+                                <div class="inner">
+                                    <h3>$<?= number_format($total_revenue ?? 0, 2) ?></h3>
+                                    <p>Total Revenue</p>
+                                </div>
+                                <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.816a3.128 3.128 0 00-1.89.666.75.75 0 10.92 1.182 1.62 1.62 0 01.97-.324h.01c.54 0 1.017.267 1.305.686.288.42.389.936.276 1.424a1.7 1.7 0 01-.975 1.133l-.603.261a3.2 3.2 0 00-1.758 1.817A3.23 3.23 0 009.75 15v.75a.75.75 0 001.5 0V15c0-.642.37-1.225.947-1.475l.604-.261a3.2 3.2 0 001.837-2.134c.212-.918.074-1.887-.389-2.57A3.122 3.122 0 0012.75 6.816V6z"></path>
+                                </svg>
+                                <!-- <a href="<?= base_url('admin/reports/sales') ?>" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                                    View Report <i class="bi bi-arrow-right"></i>
+                                </a> -->
+                            </div>
+                        </div>
+
                         <!-- Total Orders -->
                         <div class="col-lg-3 col-6">
                             <div class="small-box text-bg-primary">
@@ -38,22 +54,7 @@
                             </div>
                         </div>
 
-                        <!-- Total Revenue -->
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box text-bg-success">
-                                <div class="inner">
-                                    <h3>$<?= number_format($total_revenue ?? 0, 2) ?></h3>
-                                    <p>Total Revenue</p>
-                                </div>
-                                <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.816a3.128 3.128 0 00-1.89.666.75.75 0 10.92 1.182 1.62 1.62 0 01.97-.324h.01c.54 0 1.017.267 1.305.686.288.42.389.936.276 1.424a1.7 1.7 0 01-.975 1.133l-.603.261a3.2 3.2 0 00-1.758 1.817A3.23 3.23 0 009.75 15v.75a.75.75 0 001.5 0V15c0-.642.37-1.225.947-1.475l.604-.261a3.2 3.2 0 001.837-2.134c.212-.918.074-1.887-.389-2.57A3.122 3.122 0 0012.75 6.816V6z"></path>
-                                </svg>
-                                <a href="<?= base_url('admin/reports/sales') ?>" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                                    View Report <i class="bi bi-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
+                        
                         <!-- Total Products -->
                         <div class="col-lg-3 col-6">
                             <div class="small-box text-bg-warning">
@@ -82,9 +83,7 @@
                                     <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clip-rule="evenodd"></path>
                                     <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z"></path>
                                 </svg>
-                                <a href="<?= base_url('admin/customers') ?>" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                                    View Customers <i class="bi bi-arrow-right"></i>
-                                </a>
+                                
                             </div>
                         </div>
                     </div>

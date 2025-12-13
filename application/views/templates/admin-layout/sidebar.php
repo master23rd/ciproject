@@ -129,10 +129,10 @@
                         <li class="nav-header">SETTINGS</li>
 
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/settings') ?>" class="nav-link <?= ($active_menu ?? '') == 'settings' ? 'active' : '' ?>">
+                            <!-- <a href="<?= base_url('admin/settings') ?>" class="nav-link <?= ($active_menu ?? '') == 'settings' ? 'active' : '' ?>">
                                 <i class="nav-icon bi bi-gear"></i>
                                 <p>Settings</p>
-                            </a>
+                            </a> -->
                         </li>
 
                         <li class="nav-item">
