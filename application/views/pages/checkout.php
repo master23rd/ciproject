@@ -220,16 +220,16 @@
                                 <input type="text" class="form-control" id="cardName" placeholder="JOHN DOE" required>
                             </div>
                         </div>
-                        <div class="form-check">
+                        <!-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="saveCard">
                             <label class="form-check-label" for="saveCard">
                                 Save this card for future purchases
                             </label>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- PayPal Payment -->
-                    <div class="payment-method-card" data-method="paypal">
+                    <!-- <div class="payment-method-card" data-method="paypal">
                         <input type="radio" name="paymentMethod" value="paypal">
                         <div class="payment-method-info">
                             <div class="payment-method-name">PayPal</div>
@@ -246,10 +246,10 @@
                             You will be redirected to PayPal to complete your purchase securely.
                         </div>
                         <div id="paypal-button-container" class="paypal-button-container"></div>
-                    </div>
+                    </div> -->
 
                     <!-- Google Pay Payment -->
-                    <div class="payment-method-card" data-method="gpay">
+                    <!-- <div class="payment-method-card" data-method="gpay">
                         <input type="radio" name="paymentMethod" value="gpay">
                         <div class="payment-method-info">
                             <div class="payment-method-name">Google Pay</div>
@@ -266,7 +266,7 @@
                             Click the button below to pay with Google Pay.
                         </div>
                         <div id="google-pay-button-container" class="gpay-button-container"></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
