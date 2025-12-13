@@ -20,6 +20,8 @@ class Welcome extends CI_Controller
 	 */
 	private function get_common_data()
 	{
+		$this->load->model('Product_model');
+        
 		// Get cart count from session
 		$cart = $this->session->userdata('cart');
 		$cart_count = 0;
@@ -33,7 +35,8 @@ class Welcome extends CI_Controller
 			'user_logged_in' => $this->session->userdata('customer_logged_in'),
 			'user_name' => $this->session->userdata('customer_name'),
 			'user_email' => $this->session->userdata('customer_email'),
-			'cart_count' => $cart_count
+			'cart_count' => $cart_count,
+			'products' => $this->Product_model->get_all_with_category()
 		];
 	}
 

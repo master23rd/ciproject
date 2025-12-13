@@ -211,35 +211,46 @@
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
                     <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="hot-sale-card">
-                                <div class="position-relative">
-                                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"
-                                        class="product-image" alt="iPhone 15 Pro Max">
-                                    <span class="product-badge">-25%</span>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-name">iPhone 15 Pro Max</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="rating-count">(156)</span>
-                                    </div>
-                                    <div class="product-price">
-                                        Rp 18.999.000
-                                        <span class="product-price-old">Rp 24.999.000</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<?php if (!empty($products)): ?>
+							<?php foreach (array_slice($products, 0, 3) as $product): ?>
+								<div class="col-md-4">
+									<div class="hot-sale-card">
+										<div class="position-relative">
+											<img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"
+												class="product-image" alt="iPhone 15 Pro Max">
+											<span class="product-badge">-25%</span>
+										</div>
+										<div class="product-body">
+											<h5 class="product-name"><?= $product->product_name; ?></h5>
+											<div class="product-rating">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<span class="rating-count">(156)</span>
+											</div>
+											<div class="product-price">
+												$ <?= $product->price; ?>
+												<span class="product-price-old">$ <?= $product->price; ?></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endforeach; ?>
+						<?php else: ?>
+							 <tr>
+								<td colspan="8" class="text-center py-4">
+									<i class="bi bi-inbox fs-1 text-muted"></i>
+									<p class="text-muted mb-0">No products found</p>
+								</td>
+							</tr>
+						<?php endif; ?>
                     </div>
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item">
+                <!-- <div class="carousel-item">
                     <div class="row g-4">
                         <div class="col-md-4">
                             <div class="hot-sale-card">
@@ -314,7 +325,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <button class="carousel-control-prev" type="button" data-bs-target="#hotSaleCarousel" data-bs-slide="prev">
