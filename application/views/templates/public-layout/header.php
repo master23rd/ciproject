@@ -260,12 +260,12 @@
                                             <br><small class="text-muted"><?php echo isset($user_email) ? $user_email : ''; ?></small>
                                         </div>
                                     </li>
-                                    <li><a class="dropdown-item" href="<?php echo base_url('account'); ?>"><i class="fas fa-user"></i> My Account</a></li>
+                                    <!-- <li><a class="dropdown-item" href="<?php echo base_url('account'); ?>"><i class="fas fa-user"></i> My Account</a></li>
                                     <li><a class="dropdown-item" href="<?php echo base_url('orders'); ?>"><i class="fas fa-box"></i> My Orders</a></li>
                                     <li><a class="dropdown-item" href="<?php echo base_url('wishlist'); ?>"><i class="fas fa-heart"></i> Wishlist</a></li>
                                     <li><a class="dropdown-item" href="<?php echo base_url('settings'); ?>"><i class="fas fa-cog"></i> Settings</a></li>
                                     <li>
-                                        <hr class="dropdown-divider">
+                                        <hr class="dropdown-divider">-->
                                     </li>
                                     <li><a class="dropdown-item text-danger" href="<?php echo base_url('auth/logout'); ?>"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                                 </ul>
@@ -294,12 +294,12 @@
         <div class="container">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('promo'); ?>"><i class="fas fa-percent me-1"></i> Deals</a>
+                    <a class="nav-link" href="<?php echo base_url('promo'); ?>"><i class="fas fa-percent me-1"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('flash-sale'); ?>"><i class="fas fa-bolt me-1"></i> Flash Sale</a>
+                    <a class="nav-link" href="<?php echo base_url('flash-sale'); ?>"><i class="fas fa-bolt me-1"></i> Flash Sale (Comming Soon)</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('new-arrivals'); ?>"><i class="fas fa-star me-1"></i> New Arrivals</a>
                 </li>
                 <li class="nav-item">
@@ -307,7 +307,7 @@
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="<?php echo base_url('brands'); ?>"><i class="fas fa-tags me-1"></i> Brands</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>

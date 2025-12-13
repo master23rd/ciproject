@@ -212,13 +212,13 @@
 
                 <!-- Remember & Forgot -->
                 <div class="remember-forgot">
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="remember" name="remember">
                         <label class="form-check-label" for="remember">
                             Remember me
                         </label>
                     </div>
-                    <a href="<?php echo base_url('auth/forgot-password'); ?>" class="forgot-link">Forgot Password?</a>
+                    <a href="<?php echo base_url('auth/forgot-password'); ?>" class="forgot-link">Forgot Password?</a> -->
                 </div>
 
                 <!-- Login Button -->

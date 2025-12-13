@@ -477,9 +477,9 @@
                 </div>
                 
                 <div class="cart-actions">
-                    <a href="${BASE_URL}cart" class="btn btn-outline-primary w-100 mb-2">
+                    <!--<a href="${BASE_URL}cart" class="btn btn-outline-primary w-100 mb-2">
                         <i class="fas fa-shopping-cart me-2"></i>View Cart
-                    </a>
+                    </a>-->
                     <a href="${BASE_URL}checkout" class="btn btn-primary w-100">
                         <i class="fas fa-check-circle me-2"></i>Checkout
                     </a>
@@ -600,7 +600,7 @@
                         <img src="${product.image}" 
                             class="product-image" 
                             alt="${escapeHtml(product.product_name)}"
-                            onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400'">
+                            ">
                         ${product.qty <= 5 && product.qty > 0 ? '<span class="product-badge">Low Stock</span>' : ''}
                         ${product.qty <= 0 ? '<span class="product-badge bg-danger">Out of Stock</span>' : ''}
                     </div>
