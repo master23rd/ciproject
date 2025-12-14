@@ -611,6 +611,7 @@
                         <img src="${BASE_URL}uploads/products/${product.image}"
                             class="product-image" 
                             alt="${escapeHtml(product.product_name)}"
+							onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400'
                             ">
                         ${product.qty <= 5 && product.qty > 0 ? '<span class="product-badge">Low Stock</span>' : ''}
                         ${product.qty <= 0 ? '<span class="product-badge bg-danger">Out of Stock</span>' : ''}

@@ -36,7 +36,7 @@ class Detail_transaction_model extends CI_Model {
         $this->db->select('tbl_detail_transactions.*, tbl_products.price, tbl_products.image');
         $this->db->from($this->table);
         $this->db->join('tbl_products', 'tbl_products.id = tbl_detail_transactions.product_id', 'left');
-        $this->db->where('order_number', $order_number);
+        $this->db->where('tbl_detail_transactions.order_number', $order_number);
         return $this->db->get()->result();
     }
 

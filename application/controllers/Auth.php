@@ -91,8 +91,13 @@ class Auth extends CI_Controller {
             return;
         }
 
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+		$raw = json_decode(file_get_contents("php://input"), true);
+
+		$username    = $raw['email'] ?? null;
+    	$password = $raw['password'] ?? null;
+
+        // $username = $this->input->post('email');
+        // $password = $this->input->post('password');
 
         if (empty($username) || empty($password)) {
             http_response_code(400);

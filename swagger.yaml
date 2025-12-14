@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: CIProject API
+  version: 1.0.0
+  description: API documentation for CIProject (CodeIgniter 3)
+servers:
+  - url: http://ciecom2025.test
+paths:
+  /api/auth/login:
+    post:
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login response
+  /api/auth/logout:
+    post:
+      summary: Logout user
+      responses:
+        '200':
+          description: Logout response
+  /api/auth/refresh:
+    post:
+      summary: Refresh JWT token
+      responses:
+        '200':
+          description: Token refreshed
+  /api/auth/verify:
+    get:
+      summary: Verify JWT token
+      responses:
+        '200':
+          description: Token valid
+  /api/auth/check:
+    get:
+      summary: Check login status
+      responses:
+        '200':
+          description: Status response
+  /api/products:
+    get:
+      summary: Get all products
+      responses:
+        '200':
+          description: List of products
+  /api/products/search:
+    get:
+      summary: Search products
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results
+  /api/products/{id}:
+    get:
+      summary: Get product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product detail
+  /api/categories:
+    get:
+      summary: Get all categories
+      responses:
+        '200':
+          description: List of categories
+  /api/categories/{id}:
+    get:
+      summary: Get category by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Category detail
+  /api/categories/{id}/products:
+    get:
+      summary: Get products by category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Products in category
+  /api/user/profile:
+    get:
+      summary: Get user profile (protected)
+      responses:
+        '200':
+          description: User profile
+  /api/user/orders:
+    get:
+      summary: Get user orders (protected)
+      responses:
+        '200':
+          description: User orders
+  # /api/user/reciept/{order_number}:
+  #   get:
+  #     summary: Get user orders (protected)
+  #     parameters:
+  #       - in: path
+  #         name: order_number
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       '200':
+  #        description: PDF receipt
+  #        content:
+  #         application/pdf:
+  #           schema:
+  #             type: string
+  #             format: binary

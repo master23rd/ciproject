@@ -203,6 +203,13 @@
                     <i class="bi bi-phone-fill"></i>Admin
                 </div>
                 <p>Sign in to your admin panel</p>
+				 <!-- Demo Credentials -->
+				<div class="alert alert-info mb-3">
+					<small>
+						<strong><i class="fas fa-info-circle me-1"></i>Demo:</strong>
+						admin / admin123
+					</small>
+				</div>
             </div>
             <div class="card-body">
                 <?php if ($this->session->flashdata('error')): ?>
@@ -236,12 +243,12 @@
                             <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember">
                             <label class="form-check-label" for="remember">Remember Me</label>
                         </div>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary w-100">
                         <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
                     </button>

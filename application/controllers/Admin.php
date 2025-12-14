@@ -496,6 +496,165 @@ class Admin extends CI_Controller {
     }
 
     /**
+     * Add Customer Form
+     */
+    public function customers_add()
+    {
+        $this->load->model('Customer_model');
+        
+        if ($this->input->method() === 'post') {
+            // Process form submission
+            $email = $this->input->post('email');
+            
+            // Check if email already exists
+            if ($this->Customer_model->email_exists($email)) {
+                $this->session->set_flashdata('error', 'Email already exists!');
+                redirect('admin/customers/add');
+                return;
+            }
+            
+            $data = [
+                'customer_name' => $this->input->post('customer_name'),
+                'email' => $email,
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            ];
+            
+            if ($this->Customer_model->create($data)) {
+                $this->session->set_flashdata('success', 'Customer added successfully!');
+                redirect('admin/customers');
+            } else {
+                // $this->session->set_flashdata('error', 'Failed to add customer!');
+                redirect('admin/customers/add');
+            }
+            return;
+        }
+        
+        $data = $this->get_common_data('Add Customer', 'customers');
+        $data['action'] = 'add';
+        
+        $this->load_admin_view('admin/customers_form', $data);
+    }
+
+    /**
+     * Edit Customer Form
+     */
+    public function customers_edit($id)
+    {
+        $this->load->model('Customer_model');
+        
+        $customer = $this->Customer_model->get_by_id($id);
+        
+        if (!$customer) {
+            $this->session->set_flashdata('error', 'Customer not found!');
+            redirect('admin/customers');
+            return;
+        }
+        
+        if ($this->input->method() === 'post') {
+            // Process form submission
+            $email = $this->input->post('email');
+            
+            // Check if email already exists (exclude current customer)
+            if ($this->Customer_model->email_exists($email, $id)) {
+                $this->session->set_flashdata('error', 'Email already exists!');
+                redirect('admin/customers/edit/' . $id);
+                return;
+            }
+            
+            $data = [
+                'customer_name' => $this->input->post('customer_name'),
+                'email' => $email,
+                // 'phone' => $this->input->post('phone'),
+                // 'address' => $this->input->post('address'),
+                // 'updated_at' => date('Y-m-d H:i:s')
+            ];
+            
+            // Only update password if provided
+            $password = $this->input->post('password');
+            if (!empty($password)) {
+                $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+            }
+            
+            if ($this->Customer_model->update($id, $data)) {
+                $this->session->set_flashdata('success', 'Customer updated successfully!');
+                redirect('admin/customers');
+            } else {
+                $this->session->set_flashdata('error', 'Failed to update customer!');
+                redirect('admin/customers/edit/' . $id);
+            }
+            return;
+        }
+        
+        $data = $this->get_common_data('Edit Customer', 'customers');
+        $data['action'] = 'edit';
+        $data['customer'] = $customer;
+        
+        $this->load_admin_view('admin/customers_form', $data);
+    }
+
+    /**
+     * View Customer Detail
+     */
+    public function customers_view($id)
+    {
+        $this->load->model('Customer_model');
+        $this->load->model('Transaction_model');
+        
+        $customer = $this->Customer_model->get_by_id($id);
+        
+        if (!$customer) {
+            $this->session->set_flashdata('error', 'Customer not found!');
+            redirect('admin/customers');
+            return;
+        }
+        
+        $data = $this->get_common_data('Customer Detail', 'customers');
+        $data['customer'] = $customer;
+        $data['orders'] = $this->Transaction_model->get_by_customer($id);
+        $data['total_orders'] = count($data['orders']);
+        $data['total_spent'] = array_sum(array_column($data['orders'], 'grand_total'));
+        
+        $this->load_admin_view('admin/customers_view', $data);
+    }
+
+    /**
+     * Delete Customer
+     */
+    public function customers_delete($id)
+    {
+        $this->load->model('Customer_model');
+        
+        $customer = $this->Customer_model->get_by_id($id);
+        
+        if (!$customer) {
+            $this->session->set_flashdata('error', 'Customer not found!');
+            redirect('admin/customers');
+            return;
+        }
+        
+        if ($this->Customer_model->delete($id)) {
+            $this->session->set_flashdata('success', 'Customer deleted successfully!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete customer!');
+        }
+        
+        redirect('admin/customers');
+    }
+
+	 /*
+	 * Admin Management
+     */
+    public function staff()
+    {
+        $this->load->model('Customer_model');
+        
+        $data = $this->get_common_data('Customers', 'customers');
+        $data['customers'] = $this->Customer_model->get_all();
+        
+        $this->load_admin_view('admin/customers', $data);
+    }
+
+    /**
      * Settings
      */
     public function settings()

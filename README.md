@@ -19,7 +19,8 @@ This project follows a MVC architecture with the following main components:
 - **Professional Ready Template (UI Landing Page)**
 - **Email Integrations**
 - **Invoice PDF**
-- **API Access**
+- **API Access** /swagger-ui
+- **Swagger Document** /swagger-ui
 - **Authentication & Authorization** - Login for Customer & Admin user
 - **Assets Management** - Products, Category, Orders, General Setting Pages
 
@@ -116,7 +117,7 @@ Assign roles/permissions:
 
 The server exposes a REST API with the following main endpoints and consideration points:
 
-- Versioning: /api/v1/
+- Versioning: /api/ (v1)
 - Use REST controllers
 - Standard methods: GET, POST, PUT, DELETE
 - JWT (JSON Web Tokens)
@@ -166,12 +167,12 @@ Current:
 - **Email Integrations**
 - **Invoice PDF**
 - **API Access**
+- **Swagger**
 - **Authentication & Authorization** - Login for Customer & Admin user
 
 Future : 
 - **Docker**
 - **RBAC**
-- **Swagger**
 - **Github Actions**
 - **Sonarqube**
 - **grafana**

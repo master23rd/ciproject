@@ -23,7 +23,7 @@ class DetailTransactionSeeder {
             ],
             [
                 'order_number' => 'ORD-' . date('Ymd') . '-001',
-                'product_id'     => 6,
+                'product_id'     => 2,
                 'qty'            => 1,
                 'product_name'   => 'Samsung 45W Super Fast Charger',
             ],
@@ -36,36 +36,9 @@ class DetailTransactionSeeder {
             ],
             [
                 'order_number' => 'ORD-' . date('Ymd') . '-002',
-                'product_id'     => 9,
+                'product_id'     => 3,
                 'qty'            => 1,
                 'product_name'   => 'iPhone 15 Pro',
-            ],
-            // Transaction 3 - Michael Johnson (Nubia Red Magic 9 Pro)
-            [
-                'order_number' => 'ORD-' . date('Ymd') . '-003',
-                'product_id'     => 15,
-                'qty'            => 1,
-                'product_name'   => 'Nubia Red Magic 9 Pro',
-            ],
-            // Transaction 4 - Emily Davis (Galaxy Z Fold 5)
-            [
-                'order_number' => 'ORD-' . date('Ymd') . '-004',
-                'product_id'     => 16,
-                'qty'            => 1,
-                'product_name'   => 'Samsung Galaxy Z Fold 5',
-            ],
-            // Transaction 5 - Robert Wilson (Galaxy Z Flip 5 + Redmi Note 13 Pro)
-            [
-                'order_number' => 'ORD-' . date('Ymd') . '-005',
-                'product_id'     => 17,
-                'qty'            => 1,
-                'product_name'   => 'Samsung Galaxy Z Flip 5',
-            ],
-            [
-                'order_number' => 'ORD-' . date('Ymd') . '-005',
-                'product_id'     => 12,
-                'qty'            => 1,
-                'product_name'   => 'Xiaomi Redmi Note 13 Pro',
             ],
         ];
 

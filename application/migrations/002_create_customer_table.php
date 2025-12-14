@@ -13,7 +13,7 @@ class Migration_Create_Customer_Table extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => TRUE,
-                'unique' => TRUE
+                'auto_increment' => TRUE
             ],
             'customer_name' => [
                 'type' => 'VARCHAR',
@@ -34,7 +34,6 @@ class Migration_Create_Customer_Table extends CI_Migration
         ]);
 
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key('id_customer', FALSE, TRUE);
         $this->dbforge->create_table('tbl_customers');
     }
 

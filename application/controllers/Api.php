@@ -15,7 +15,6 @@ class Api extends CI_Controller {
         $this->load->library('jwt_auth');
         
         // Set JSON header for all responses
-        header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         header('Access-Control-Allow-Headers: Authorization, Content-Type');
@@ -33,6 +32,8 @@ class Api extends CI_Controller {
      */
     public function products()
     {
+		header('Content-Type: application/json');
+       
         $category_id = $this->input->get('category_id');
         $search = $this->input->get('search');
         $limit = $this->input->get('limit') ? (int) $this->input->get('limit') : null;
@@ -97,6 +98,8 @@ class Api extends CI_Controller {
      */
     public function product($id = null)
     {
+		header('Content-Type: application/json');
+       
         if (!$id) {
             http_response_code(400);
             echo json_encode(['success' => false, 'message' => 'Product ID is required']);
@@ -139,6 +142,8 @@ class Api extends CI_Controller {
      */
     public function categories()
     {
+		header('Content-Type: application/json');
+       
         $categories = $this->Category_model->get_all();
 
         $formatted_categories = array_map(function($category) {
@@ -161,6 +166,8 @@ class Api extends CI_Controller {
      */
     public function category($id = null)
     {
+		header('Content-Type: application/json');
+       
         if (!$id) {
             http_response_code(400);
             echo json_encode(['success' => false, 'message' => 'Category ID is required']);
@@ -191,6 +198,8 @@ class Api extends CI_Controller {
      */
     public function category_products($category_id = null)
     {
+		header('Content-Type: application/json');
+       
         if (!$category_id) {
             http_response_code(400);
             echo json_encode(['success' => false, 'message' => 'Category ID is required']);
@@ -224,6 +233,8 @@ class Api extends CI_Controller {
      */
     public function search()
     {
+		header('Content-Type: application/json');
+       
         $query = $this->input->get('q');
 
         if (empty($query)) {
@@ -268,6 +279,8 @@ class Api extends CI_Controller {
      */
     public function user_profile()
     {
+		header('Content-Type: application/json');
+       
         $user = $this->jwt_auth->validate_request();
 
         if (!$user) {
@@ -307,6 +320,8 @@ class Api extends CI_Controller {
      */
     private function get_product_images($product_id)
     {
+		header('Content-Type: application/json');
+       
         $this->load->model('Image_model');
         $images = $this->Image_model->get_by_product($product_id);
         
@@ -317,5 +332,179 @@ class Api extends CI_Controller {
         return array_map(function($img) {
             return base_url($img->image_path);
         }, $images);
+    }
+
+	/**
+	 * Get Orders Page - Display user's orders
+	 */
+	public function get_my_orders()
+	{
+		header('Content-Type: application/json');
+       
+		$user = $this->jwt_auth->validate_request();
+
+        if (!$user) {
+            http_response_code(401);
+            echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+            return;
+        }
+
+		// Load models
+		$this->load->model('Transaction_model');
+		$this->load->model('Detail_transaction_model');
+
+		
+		// Get customer's orders
+		$orders = $this->Transaction_model->get_by_customer($user->user_id);
+
+		// Get order details for each order
+		foreach ($orders as &$order) {
+			$order->items = $this->Detail_transaction_model->get_by_order_number($order->order_number);
+			$order->item_count = count($order->items);
+		}
+
+		echo json_encode([
+            'success' => true,
+            'data' => $orders,
+        ]);
+	}
+
+	/**
+	 * Download My Receipt (PDF)
+	 */
+	public function get_my_receipt()
+	{
+		print_r('test');
+		exit;
+		
+		$user = $this->jwt_auth->validate_request();
+
+		if (!$user) {
+			http_response_code(401);
+			echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+			return;
+		}
+
+		$raw = json_decode(file_get_contents("php://input"), true);
+
+		$order_number    = $raw['order_number'] ?? null;
+		if (!$order_number) {
+			show_error('Order number is required', 400);
+			return;
+		}
+
+		// Load models
+		$this->load->model([
+			'Transaction_model',
+			'Detail_transaction_model',
+			'Customer_model'
+		]);
+
+		$transaction = $this->Transaction_model->get_by_order_number($order_number);
+		var_dump($transaction);
+		if (!$transaction) {
+			show_error('Order not found', 404);
+			return;
+		}
+
+		$customer = $this->Customer_model->get_by_id($transaction->customer_id);
+		$details  = $this->Detail_transaction_model->get_by_order_number($order_number);
+
+		$items = [];
+		$subtotal = 0;
+
+		foreach ($details as $detail) {
+			$total = $detail->price * $detail->qty;
+			$items[] = [
+				'id'    => $detail->product_id,
+				'name'  => $detail->product_name,
+				'price' => $detail->price,
+				'qty'   => $detail->qty,
+				'total' => $total
+			];
+			$subtotal += $total;
+		}
+
+		$order = $this->normalize_order_data([
+			'order_number' => $transaction->order_number,
+			'order_date'   => date('F j, Y - H:i', strtotime($transaction->created_at)),
+			'customer' => [
+				'name'    => $transaction->receiver_name ?? ($customer->customer_name ?? 'Customer'),
+				'email'   => $customer->email ?? '',
+				'phone'   => $transaction->phone ?? '',
+				'address' => $transaction->address ?? '',
+				'city'    => $transaction->city ?? '',
+				'zip'     => $transaction->postal_code ?? ''
+			],
+			'items'        => $items,
+			'item_count'   => count($items),
+			'subtotal'     => $subtotal,
+			'shipping'     => 0,
+			'total'        => $transaction->grand_total,
+			'payment_method' => 'Credit Card'
+		]);
+
+		// 🔥 HARD RESET OUTPUT (CRITICAL)
+		while (ob_get_level()) {
+			ob_end_clean();
+		}
+
+		header_remove();
+		$this->output->enable_profiler(false);
+
+		// 🔥 FORCE PDF HEADERS
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Expose-Headers: Content-Disposition');
+		header('Content-Type: application/pdf');
+		header('Content-Disposition: attachment; filename="receipt-'.$order_number.'.pdf"');
+		header('Cache-Control: private, max-age=0, must-revalidate');
+		header('Pragma: public');
+
+		// 🔥 OUTPUT RAW PDF
+		$this->load->library('pdf_invoice');
+		// Download PDF
+        $this->pdf_invoice->download($order);
+
+		exit;
+	}
+
+
+	/**
+     * Normalize order data to ensure all fields exist
+     * 
+     * @param array $order
+     * @return array
+     */
+    protected function normalize_order_data($order)
+    {
+        // Set defaults for missing fields
+        $defaults = [
+            'order_number' => 'N/A',
+            'order_date' => date('F j, Y - H:i'),
+            'customer' => [
+                'name' => 'Customer',
+                'email' => '',
+                'phone' => '',
+                'address' => '',
+                'city' => '',
+                'zip' => ''
+            ],
+            'items' => [],
+            'item_count' => 0,
+            'subtotal' => 0,
+            'shipping' => 0,
+            'total' => 0,
+            'payment_method' => 'Credit Card'
+        ];
+
+        // Merge with defaults
+        $order = array_merge($defaults, $order);
+
+        // Ensure customer array has all fields
+        if (isset($order['customer']) && is_array($order['customer'])) {
+            $order['customer'] = array_merge($defaults['customer'], $order['customer']);
+        }
+
+        return $order;
     }
 }

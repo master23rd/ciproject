@@ -78,6 +78,10 @@ $route['invoice/download/(:any)'] = 'invoice/download/$1';
 $route['invoice/view/(:any)'] = 'invoice/view/$1';
 $route['invoice/download-session'] = 'invoice/download_from_session';
 
+// User Orders routes
+$route['orders'] = 'welcome/my_orders';
+$route['my-orders'] = 'welcome/my_orders';
+
 // Admin routes
 $route['admin'] = 'admin/index';
 $route['admin/dashboard'] = 'admin/dashboard';
@@ -97,8 +101,10 @@ $route['admin/categories'] = 'admin/categories';
 $route['admin/categories/(:any)'] = 'admin/categories/$1';
 $route['admin/categories/(:any)/(:num)'] = 'admin/categories/$1/$2';
 $route['admin/customers'] = 'admin/customers';
-$route['admin/customers/(:any)'] = 'admin/customers/$1';
-$route['admin/customers/(:any)/(:num)'] = 'admin/customers/$1/$2';
+$route['admin/customers/add'] = 'admin/customers_add';
+$route['admin/customers/edit/(:num)'] = 'admin/customers_edit/$1';
+$route['admin/customers/view/(:num)'] = 'admin/customers_view/$1';
+$route['admin/customers/delete/(:num)'] = 'admin/customers_delete/$1';
 $route['admin/transactions'] = 'admin/transactions';
 $route['admin/transactions/(:any)'] = 'admin/transactions/$1';
 $route['admin/transactions/(:any)/(:num)'] = 'admin/transactions/$1/$2';
@@ -125,6 +131,9 @@ $route['api/categories/(:num)/products'] = 'api/category_products/$1';
 
 // User API routes (protected)
 $route['api/user/profile'] = 'api/user_profile';
+$route['api/user/orders'] = 'api/get_my_orders';
+$route['api/user/reciept/(:any)'] = 'api/get_my_receipt';
+
 
 // Migration and seeder routes
 $route['migrate'] = 'migrate/index';
